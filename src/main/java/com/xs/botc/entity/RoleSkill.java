@@ -14,5 +14,12 @@ public interface RoleSkill {
      * @param roles
      * @return
      */
-    public Boolean skill(Role[] roles);
+     Boolean skill(Role[] roles, Room room);
+
+    /**
+     * 角色死亡
+     * @param roles
+     * @return
+     */
+     Boolean Death(Role[] roles, Room room);
 }

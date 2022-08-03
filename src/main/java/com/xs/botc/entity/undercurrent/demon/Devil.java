@@ -3,8 +3,12 @@ package com.xs.botc.entity.undercurrent.demon;
 import com.xs.botc.entity.BadGuy;
 import com.xs.botc.entity.Role;
 import com.xs.botc.entity.RoleSkill;
+import com.xs.botc.entity.Room;
 import com.xs.botc.enums.State;
+import com.xs.botc.util.GameUtil;
 import lombok.Data;
+
+import java.util.Random;
 
 /**
  * 小恶魔
@@ -35,7 +39,7 @@ import lombok.Data;
 public class Devil extends BadGuy implements RoleSkill {
 
     @Override
-    public Boolean skill(Role[] roles){
+    public Boolean skill(Role[] roles, Room room){
         Role role = roles[0];
         //挡刀
         if (!role.getState().contains(State.免疫)) {
@@ -44,8 +48,16 @@ public class Devil extends BadGuy implements RoleSkill {
         //自刀
         else if (getNo().equals(role.getNo())) {
             //获取爪牙列表一人变为恶魔，为空则好人胜利
-            //getMinions()
             setDie(true);
+            room.getBadGuys().remove(this);
+            if (room.getBadGuys().isEmpty()){
+                GameUtil.GameOver(room);
+            }
+            else{
+                int nextInt = new Random().nextInt(room.getBadGuys().size());
+                room.getBadGuys().get(nextInt).setName("Devil");
+            }
+            //getMinions()
             return true;
         }
         //杀人鞭尸
@@ -53,5 +65,10 @@ public class Devil extends BadGuy implements RoleSkill {
             role.setDie(true);
             return true;
         }
+    }
+
+    @Override
+    public Boolean Death(Role[] roles, Room room) {
+        return null;
     }
 }

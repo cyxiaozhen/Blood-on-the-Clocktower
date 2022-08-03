@@ -1,6 +1,9 @@
 package com.xs.botc.entity;
 
+import com.xs.botc.entity.base.User;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * 游戏房间
@@ -11,4 +14,39 @@ import lombok.Data;
  */
 @Data
 public class Room {
+
+    /**
+     * 房间ID
+     */
+    String id;
+
+    /**
+     * 房间名称
+     */
+    String name;
+
+    /**
+     * 游戏模式
+     */
+    String mode;
+
+    /**
+     * 房间人数
+     */
+    String number;
+
+    /**
+     * 游玩人员
+     */
+    List<User> users;
+
+    /**
+     * 在场邪恶人员
+     */
+    List<BadGuy> badGuys;
+
+    /**
+     * 在场善良人员
+     */
+    List<NiceGuy> niceGuys;
 }

@@ -41,5 +41,5 @@ public abstract class Role implements RoleSkill{
     boolean isDie;
 
     @Override
-    public abstract Boolean skill(Role[] roles);
+    public abstract Boolean skill(Role[] roles, Room room);
 }

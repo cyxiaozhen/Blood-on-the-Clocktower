@@ -3,12 +3,12 @@ package com.xs.botc.entity.undercurrent.minions;
 import com.xs.botc.entity.BadGuy;
 import com.xs.botc.entity.Role;
 import com.xs.botc.entity.RoleSkill;
-import com.xs.botc.entity.undercurrent.demon.Devil;
+import com.xs.botc.entity.Room;
 import com.xs.botc.enums.State;
 import lombok.Data;
 
 /**
- * 红唇女郎荡妇
+ * 红唇女郎(荡妇)
  *
  * @email m18670240103@163.com
  * @author: xz
@@ -18,14 +18,17 @@ import lombok.Data;
 public class Slut extends BadGuy implements RoleSkill {
 
     @Override
-    public Boolean skill(Role[] roles){
+    public Boolean skill(Role[] roles, Room room){
         if (!(getState().contains(State.中毒)) || getState().contains(State.醉酒)){
-            Devil devil = new Devil();
-            devil.setNo(getNo());
-            devil.setState(getState());
+            setName("Devil");
             return true;
         }
         //todo 几率
+        return null;
+    }
+
+    @Override
+    public Boolean Death(Role[] roles, Room room) {
         return null;
     }
 }
