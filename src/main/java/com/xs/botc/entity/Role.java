@@ -48,4 +48,10 @@ public abstract class Role implements RoleSkill{
     public void death(Role[] roles, Room room){
         System.out.println(name + "死亡");
     }
+
+    @Override
+    public void nominated(Role[] roles, Room room){
+        System.out.println(name + "提名");
+    }
+
 }

@@ -1,8 +1,6 @@
 package com.xs.botc.enums;
 
 import com.xs.botc.constant.RoleConstantFactory;
-import com.xs.botc.entity.undercurrent.minions.*;
-import com.xs.botc.entity.undercurrent.demon.Devil;
 import lombok.Getter;
 
 /**

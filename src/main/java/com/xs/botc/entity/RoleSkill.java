@@ -24,4 +24,12 @@ public interface RoleSkill {
      * @return
      */
      void death(Role[] roles, Room room);
+
+    /**
+     * 被提名
+     * @param roles 提名对象
+     * @param room 房间信息
+     * @return
+     */
+    void nominated(Role[] roles, Room room);
 }
