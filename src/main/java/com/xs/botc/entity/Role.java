@@ -1,6 +1,7 @@
 package com.xs.botc.entity;
 
-import com.xs.botc.enums.State;
+import com.xs.botc.constant.RoleConstantFactory;
+import com.xs.botc.enums.EnumState;
 import lombok.Data;
 
 import java.util.List;
@@ -18,12 +19,12 @@ public abstract class Role implements RoleSkill{
     /**
      * 真实身份
      */
-    String oldName;
+    RoleConstantFactory oldName;
 
     /**
      * 展示身份
      */
-    String name;
+    RoleConstantFactory name;
 
     /**
      * 角色编号
@@ -33,13 +34,18 @@ public abstract class Role implements RoleSkill{
     /**
      * 角色状态
      */
-    List<State> state;
+    List<EnumState> state;
 
     /**
-     * 是否死亡
+     * 是否死亡提名
      */
     boolean isDie;
 
     @Override
-    public abstract Boolean skill(Role[] roles, Room room);
+    public abstract void skill(Role[] roles, Room room);
+
+    @Override
+    public void death(Role[] roles, Room room){
+        System.out.println(name + "死亡");
+    }
 }

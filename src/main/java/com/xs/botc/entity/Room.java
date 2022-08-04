@@ -31,9 +31,19 @@ public class Room {
     String mode;
 
     /**
+     * 游戏配置
+     */
+    String configure;
+
+    /**
      * 房间人数
      */
     String number;
+
+    /**
+     * 游戏天数
+     */
+    Integer days;
 
     /**
      * 游玩人员
@@ -41,12 +51,12 @@ public class Room {
     List<User> users;
 
     /**
-     * 在场邪恶人员
+     * 邪恶人员
      */
-    List<BadGuy> badGuys;
+    List<Role> badGuys;
 
     /**
-     * 在场善良人员
+     * 善良人员
      */
-    List<NiceGuy> niceGuys;
+    List<Role> niceGuys;
 }

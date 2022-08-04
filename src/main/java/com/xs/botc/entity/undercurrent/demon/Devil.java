@@ -4,7 +4,8 @@ import com.xs.botc.entity.BadGuy;
 import com.xs.botc.entity.Role;
 import com.xs.botc.entity.RoleSkill;
 import com.xs.botc.entity.Room;
-import com.xs.botc.enums.State;
+import com.xs.botc.enums.EnumState;
+import com.xs.botc.enums.UndercurrentRole;
 import com.xs.botc.util.GameUtil;
 import lombok.Data;
 
@@ -37,38 +38,36 @@ import java.util.Random;
  */
 @Data
 public class Devil extends BadGuy implements RoleSkill {
+    public Devil() {
+        setOldName(UndercurrentRole.小恶魔);
+        setName(UndercurrentRole.小恶魔);
+    }
 
     @Override
-    public Boolean skill(Role[] roles, Room room){
+    public void skill(Role[] roles, Room room){
         Role role = roles[0];
         //挡刀
-        if (!role.getState().contains(State.免疫)) {
-            return false;
+        if (role.getState().contains(EnumState.免疫)) {
         }
         //自刀
         else if (getNo().equals(role.getNo())) {
             //获取爪牙列表一人变为恶魔，为空则好人胜利
-            setDie(true);
             room.getBadGuys().remove(this);
             if (room.getBadGuys().isEmpty()){
                 GameUtil.GameOver(room);
             }
             else{
+                //爪牙转生
                 int nextInt = new Random().nextInt(room.getBadGuys().size());
-                room.getBadGuys().get(nextInt).setName("Devil");
+//                room.getBadGuys().get(nextInt).setName("Devil");
             }
-            //getMinions()
-            return true;
         }
         //杀人鞭尸
         else {
-            role.setDie(true);
-            return true;
+            if (!role.getState().contains(EnumState.死亡)){
+                role.death(roles, room);
+                role.getState().add(EnumState.死亡);
+            }
         }
-    }
-
-    @Override
-    public Boolean Death(Role[] roles, Room room) {
-        return null;
     }
 }

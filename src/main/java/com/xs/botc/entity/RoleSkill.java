@@ -11,15 +11,17 @@ public interface RoleSkill {
 
     /**
      * 角色技能
-     * @param roles
+     * @param roles 选定对象
+     * @param room 房间信息
      * @return
      */
-     Boolean skill(Role[] roles, Room room);
+     void skill(Role[] roles, Room room);
 
     /**
      * 角色死亡
-     * @param roles
+     * @param roles 选定对象
+     * @param room 房间信息
      * @return
      */
-     Boolean Death(Role[] roles, Room room);
+     void death(Role[] roles, Room room);
 }
