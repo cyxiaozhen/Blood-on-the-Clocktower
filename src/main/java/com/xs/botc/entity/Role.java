@@ -2,6 +2,7 @@ package com.xs.botc.entity;
 
 import com.xs.botc.constant.RoleConstantFactory;
 import com.xs.botc.enums.EnumState;
+import io.netty.channel.ChannelHandlerContext;
 import lombok.Data;
 
 import java.util.List;
@@ -40,6 +41,8 @@ public abstract class Role implements RoleSkill{
      * 是否死亡提名
      */
     boolean isDie;
+
+    ChannelHandlerContext ctx;
 
     @Override
     public abstract void skill(Role[] roles, Room room);

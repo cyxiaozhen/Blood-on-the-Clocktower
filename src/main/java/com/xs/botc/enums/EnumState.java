@@ -1,6 +1,5 @@
 package com.xs.botc.enums;
 
-import com.xs.botc.constant.RoleConstantFactory;
 import lombok.Getter;
 
 /**

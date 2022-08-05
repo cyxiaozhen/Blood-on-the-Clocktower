@@ -60,6 +60,7 @@ public class Devil extends BadGuy implements RoleSkill {
                 //爪牙转生
                 int nextInt = new Random().nextInt(room.getBadGuys().size());
 //                room.getBadGuys().get(nextInt).setName("Devil");
+                role.getCtx().writeAndFlush(UndercurrentRole.小恶魔);
             }
         }
         //杀人鞭尸
