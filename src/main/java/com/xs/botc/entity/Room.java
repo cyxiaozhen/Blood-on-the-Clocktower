@@ -1,6 +1,7 @@
 package com.xs.botc.entity;
 
 import com.xs.botc.entity.base.User;
+import com.xs.botc.enums.EnumGameTime;
 import lombok.Data;
 
 import java.util.List;
@@ -44,6 +45,11 @@ public class Room {
      * 游戏天数
      */
     Integer days;
+
+    /**
+     * 游戏时间
+     */
+    EnumGameTime gameTime;
 
     /**
      * 游玩人员

@@ -42,6 +42,13 @@ public abstract class Role implements RoleSkill{
      */
     boolean isDie;
 
+    /** 技能优先级
+     */
+    Integer order = 0;
+
+    /**
+     * 消息通道处理
+     */
     ChannelHandlerContext ctx;
 
     @Override

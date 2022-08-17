@@ -38,6 +38,12 @@ import java.util.Random;
  */
 @Data
 public class Devil extends BadGuy implements RoleSkill {
+
+    @Override
+    public void setOrder(Integer order) {
+        super.setOrder(-10);
+    }
+
     public Devil() {
         setOldName(UndercurrentRole.小恶魔);
         setName(UndercurrentRole.小恶魔);

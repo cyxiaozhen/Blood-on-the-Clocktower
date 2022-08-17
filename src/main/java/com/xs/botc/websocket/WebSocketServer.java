@@ -19,6 +19,8 @@ import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 /**
  * 长连接
@@ -27,11 +29,17 @@ import org.slf4j.LoggerFactory;
  * @author: xz
  * @date: 2022/8/4 周四
  */
+@Component
 public class WebSocketServer {
 
     private static final Logger log = LoggerFactory.getLogger(WebSocketServer.class);
 
-    public  void initStartServer(int port) {
+    @Bean
+    public void start(){
+        initStartServer(9527);
+    }
+
+    public void initStartServer(int port) {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workGroup = new NioEventLoopGroup();
         try {
