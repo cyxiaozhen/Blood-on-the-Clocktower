@@ -40,8 +40,8 @@ import java.util.Random;
 public class Devil extends BadGuy implements RoleSkill {
 
     @Override
-    public void setOrder(Integer order) {
-        super.setOrder(-10);
+    public void setOrder() {
+        setOrder(0);
     }
 
     public Devil() {

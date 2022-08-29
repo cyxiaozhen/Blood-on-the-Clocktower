@@ -64,4 +64,11 @@ public abstract class Role implements RoleSkill{
         System.out.println(name + "提名");
     }
 
+    public Role() {
+        setOrder();
+    }
+
+    public void setOrder(){
+        this.order = 1;
+    };
 }

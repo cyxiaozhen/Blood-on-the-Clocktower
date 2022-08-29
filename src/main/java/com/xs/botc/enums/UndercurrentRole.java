@@ -1,6 +1,9 @@
 package com.xs.botc.enums;
 
 import com.xs.botc.constant.RoleConstantFactory;
+import com.xs.botc.entity.Role;
+import com.xs.botc.entity.undercurrent.demon.Devil;
+import com.xs.botc.entity.undercurrent.minions.Slut;
 import lombok.Getter;
 
 /**
@@ -12,14 +15,16 @@ import lombok.Getter;
  */
 @Getter
 public enum UndercurrentRole implements RoleConstantFactory {
-    洗衣妇,图书管理员,调查员,厨师,共情者,占卜师,送葬者,僧侣,守鸦人,贞洁者,猎手,士兵,镇长,
-    管家,酒鬼,陌客,圣徒,
-    投毒者,间谍,红唇女郎,男爵,
-    小恶魔,
-    官员,乞丐,枪手,窃贼,替罪羊,
+    洗衣妇(null),图书管理员(null),调查员(null),厨师(null),共情者(null),占卜师(null),送葬者(null),僧侣(null),守鸦人(null),贞洁者(null),猎手(null),士兵(null),镇长(null),
+    管家(null),酒鬼(null),陌客(null),圣徒(null),
+    投毒者(null),间谍(null),红唇女郎(new Slut()),男爵(null),
+    小恶魔(new Devil()),
+    官员(null),乞丐(null),枪手(null),窃贼(null),替罪羊(null),
     ;
 
+    Role role;
 
-    UndercurrentRole() {
+    UndercurrentRole(Role role) {
+        this.role = role;
     }
 }

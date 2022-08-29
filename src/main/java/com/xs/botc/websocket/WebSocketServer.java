@@ -55,21 +55,21 @@ public class WebSocketServer {
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline()
                             		//.addLast(new IdleStateHandler(5, 5, 0, TimeUnit.MINUTES))
-                                    .addLast(new LoggingHandler(LogLevel.TRACE))
+                                    .addLast(new LoggingHandler(LogLevel.DEBUG))
                                     // HttpRequestDecoder和HttpResponseEncoder的一个组合，针对http协议进行编解码
                                     .addLast(new HttpServerCodec())
                                     // 分块向客户端写数据，防止发送大文件时导致内存溢出， channel.write(new ChunkedFile(new File("bigFile.mkv")))
                                     .addLast(new ChunkedWriteHandler())
                                     // 将HttpMessage和HttpContents聚合到一个完成的 FullHttpRequest或FullHttpResponse中,具体是FullHttpRequest对象还是FullHttpResponse对象取决于是请求还是响应
                                     // 需要放到HttpServerCodec这个处理器后面
-                                    .addLast(new HttpObjectAggregator(10240))
+                                    .addLast(new HttpObjectAggregator(1024))
                                     // webSocket 数据压缩扩展，当添加这个的时候WebSocketServerProtocolHandler的第三个参数需要设置成true
                                     .addLast(new WebSocketServerCompressionHandler())
                                     // 聚合 websocket 的数据帧，因为客户端可能分段向服务器端发送数据
                                     // https://github.com/netty/netty/issues/1112 https://github.com/netty/netty/pull/1207
-                                    .addLast(new WebSocketFrameAggregator(10 * 1024 * 1024))
+                                    .addLast(new WebSocketFrameAggregator(1024 * 1024))
                                     // 服务器端向外暴露的 web socket 端点，当客户端传递比较大的对象时，maxFrameSize参数的值需要调大
-                                    .addLast(new WebSocketServerProtocolHandler("/ws", null, true, 10485760))
+                                    .addLast(new WebSocketServerProtocolHandler("/startGame", null, true, 1048576))
                                     // 自定义处理器 - 处理 web socket 文本消息
                                     .addLast(new TextWebSocketHandler())
                                     // 自定义处理器 - 处理 web socket 二进制消息
@@ -81,10 +81,10 @@ public class WebSocketServer {
             ChannelFuture channelFuture = bootstrap.bind(port).sync();
             log.info("webSocket server listen on port : [{}]", port);
             channelFuture.channel().closeFuture().sync();
-        } catch (Exception e){
+        } catch (Exception e) {
         	log.error("{} 端口服务启动失败",port);
         	log.error(e.getMessage(),e);
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workGroup.shutdownGracefully();
         }
